@@ -20,5 +20,6 @@ let package = Package(
       name: "RunLoopQueueTests",
       dependencies: ["RunLoopQueue"]
     ),
-  ]
+  ],
+  swiftLanguageModes: [.v6]
 )
