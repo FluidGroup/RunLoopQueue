@@ -4,21 +4,36 @@
 import PackageDescription
 
 let package = Package(
-  name: "RunLoopQueue",
+  name: "WithPrerender",
+  platforms: [
+    .iOS(.v13),
+    .macOS(.v10_15),
+    .tvOS(.v13),
+    .watchOS(.v10),
+    .visionOS(.v1)    
+  ],
   products: [
     // Products define the executables and libraries a package produces, making them visible to other packages.
     .library(
-      name: "RunLoopQueue",
-      targets: ["RunLoopQueue"])
+      name: "WithPrerender",
+      targets: ["WithPrerender"]
+    ),
+    .library(
+      name: "CATransactionQueue",
+      targets: ["CATransactionQueue"]
+    ),
   ],
   targets: [
     // Targets are the basic building blocks of a package, defining a module or a test suite.
     // Targets can depend on other targets in this package and products from dependencies.
+    .target(name: "CATransactionQueue"),
     .target(
-      name: "RunLoopQueue"),
+      name: "WithPrerender",
+      dependencies: ["CATransactionQueue"]
+    ),
     .testTarget(
-      name: "RunLoopQueueTests",
-      dependencies: ["RunLoopQueue"]
+      name: "WithPrerenderTests",
+      dependencies: ["WithPrerender"]
     ),
   ],
   swiftLanguageModes: [.v6]
